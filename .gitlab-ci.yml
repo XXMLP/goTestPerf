@@ -1,0 +1,54 @@
+stages:
+    - test
+    - build
+    - package
+    - deploy
+
+utest:
+    stage: test
+    tags:
+        - aladdin-docker
+    image: harbor.dx-corp.top/basic/golang:1.12.8
+    except:
+        - tags
+    script:
+        - make test
+
+compile:
+    stage: build
+    tags:
+        - aladdin-docker
+    image: harbor.dx-corp.top/basic/golang:1.12.8
+    script:
+        - make
+    artifacts:
+        expire_in: 1h
+        paths:
+            - ./pef
+
+rpm:
+    stage: package
+    image: harbor.dx-corp.top/aladdin/fpm
+    tags:
+        - aladdin-docker
+    dependencies:
+        - compile
+    script:
+        - make package
+    artifacts:
+        expire_in: 1h
+        paths:
+            - ./*.rpm
+
+deployment:
+    stage: deploy
+    tags:
+        - aladdin
+    only:
+        - tags
+    dependencies:
+        - rpm
+    script:
+        - cp *.rpm root@yum.dx.corp:/data/yum/7/x86_64
+        - createrepo --update /data/yum/7/x86_64
+

@@ -1,0 +1,10 @@
+*.rpm
+*.swp
+*.swo
+.vscode/
+.cache/
+/pkg/
+/bin/
+/pef
+__pycache__/
+.DS_Store
