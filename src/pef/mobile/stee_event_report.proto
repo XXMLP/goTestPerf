@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+import "stee_base.proto";
+option optimize_for = LITE_RUNTIME;
+
+package com.dingxiang.mobile;
+
+message STEEEvent {
+  required Timestamp date   = 1;    //事件时间 
+  required string name      = 2;    //事件名
+  optional string value     = 3;    //事件内容，可选
+}
+
+message STEEEventReportRequest {
+    repeated STEEEvent events = 1;  //事件数组
+}
+
+message STEEEventReportResponse {
+
+}

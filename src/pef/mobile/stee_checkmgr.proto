@@ -1,0 +1,70 @@
+syntax = "proto2";
+import "stee_base.proto";
+
+option optimize_for = LITE_RUNTIME;
+
+package com.dingxiang.mobile;
+
+
+message STEEModule {
+    required string name = 1;                //模块的名字
+    required string version = 2;             //模块的版本
+    optional uint64 instance_id = 3;         //模块的id
+    optional Timestamp download_time = 4;    //模块的下载时间
+    optional uint64 assign_id = 5;           //模块的一个特殊id，方便服务器查表
+    optional bytes sha1 = 6;                 //模块文件的sha1,用于校验
+}
+
+message STEERisk {
+    required Timestamp when = 1;             //风险发生的时间
+    required RiskType type = 2;              //风险类型，详见RiskType声明，直接使用enum的number
+    optional string extra = 3;               //风险数据
+}
+
+message STEECheckMgrCheckRequest {
+    required Timestamp client_time = 1;       //客户端的上报时间
+    optional uint64 install_id = 2;           //从STEECheckMgrCheckRes中获取
+    optional string tdb = 3;                  //传const_id
+    repeated STEEModule local_modules = 4;    //本地的Module
+    repeated STEERisk risks = 5;              //缓存的风险信息
+}
+
+message STEECheckMgrCheckResponse {
+    optional uint64 install_id = 1;             //STEECheckMgrCheckReq使用，为0，需要重新发请求
+    repeated STEEModule record_modules = 2;    //本地原来存在的module，需要从服务器拿取assign_id
+    repeated STEEModule download_modules = 3;  //需要下载的Module
+}
+
+enum RiskType {
+    RiskType_Inject         = 101;                 //注入
+    RiskType_Hook           = 102;                 //Hook
+    RiskType_Root           = 103;                 //Root环境
+    RiskType_DumpMem        = 104;                 //Dump内存
+    RiskType_Emulator       = 105;                 //模拟器环境
+    RiskType_Debug          = 106;                 //被调试
+    RiskType_Repackage      = 107;                 //重打包
+    RiskType_MultiLaunch    = 108;                 //多开
+    RiskType_RiskApp        = 109;                 //敏感App，直接拉取所有的app，服务器判断
+    RiskType_RiskProcess    = 110;                 //敏感进程名，直接拉取所有进程，服务器判断
+    RiskType_FileSafety     = 111;                 //应用私有文件不安全
+    RiskType_SELinux        = 112;                 //SELinux未开启
+    RiskType_SystemBug      = 113;                 //存在系统漏洞
+    RiskType_Env_Change     = 114;                 //重要信息变更改
+    RiskType_Time_Out_Sync  = 115;                 //时间不同步
+    RiskType_Master_Key     = 116;                 //MasterKey
+    RiskType_Jailbreak      = 117;                 //越狱环境
+    RiskType_Proxy          = 118;                 //使用代理
+}
+
+message STEEModuleWithPath { // 不做传输协议，只做本地存储
+    required STEEModule mod = 1;
+    optional string path = 2;
+}
+
+message STEEModuleFile { // 不做传输协议，只做本地存储
+    repeated STEEModuleWithPath modules=1;
+    optional uint64 install_id = 2;           //从STEECheckMgrCheckRes中获取
+}
+
+
+

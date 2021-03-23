@@ -1,0 +1,12 @@
+# Intellij IDEA
+.idea
+
+# dummy.py
+*.pyc
+
+# go test coverage result
+coverage.txt
+
+# profiling file
+mem.pprof
+cpu.pprof

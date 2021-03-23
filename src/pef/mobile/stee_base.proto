@@ -1,0 +1,65 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+
+package com.dingxiang.mobile;
+
+message STEERequestHeader {
+
+    enum OSType{
+        Android = 0;
+        iOS     = 1;
+    }
+    enum OSArch{
+        ARM     = 0;
+        X86     = 1;
+        X86_64  = 2;
+        ARM64   = 3;
+    }
+
+    optional string sdk_ver         = 1;
+    optional string app_ver         = 2;
+    optional int32  app_ver_code    = 3;
+    optional string app_key         = 4;
+    optional OSType os_type         = 5;
+    optional string os_ver          = 6;
+    optional string const_id        = 7;
+    optional int32 proto_version    = 8;
+    optional string app_code        = 9;
+    optional OSArch os_arch         = 10;
+}
+
+enum STEEDataType {
+    DATATYPE_GET_REPORT_CONFIG   = 1001;    //获取数据上传的策略配置
+    DATATYPE_DO_REPORT_DATA      = 1002;    //上报数据
+    DATATYPE_CHECK_REQ           = 1003;    //风险上报和解释模块下发
+    DATATYPE_EVENT_REPORT        = 1004;    //事件上报
+}
+
+// 通讯错误类型，服务器侧示情况添加
+enum STEEErrorCode {
+    ERR_APP_KEY_NOT_FOUND_OR_NOT_EXISTS         = -10001; // appKey不存在或者已经过期
+    ERR_CHECK_SIGN_FAILED                       = -10002; // 验证签名失败
+    ERR_UNKONW_BUSINESS_TYPE                    = -10003; // 错误的业务类型
+    ERR_DESERIALIZATION_FAILED                  = -10004; // 反序列化失败
+    ERR_INTERNAL_SERVER_ERROR                   = -10005; // 服务器内部异常
+    ERR_RESOURE_LIMITE                          = -10006; // 服务器限流
+    ERR_NOERROR                                 = 0;
+}
+
+message STEERequest {
+    required STEERequestHeader  header   = 1;
+    required STEEDataType       type     = 2; //业务类型
+    required bytes              data     = 3; //业务数据
+}
+
+message STEEResponse {
+    required STEEDataType       type      = 1;
+    required bytes              data      = 2;
+    required STEEErrorCode      err_code  = 3; //错误编码
+}
+
+
+message Timestamp {
+    optional int64 seconds = 1;
+    optional int64 nanos = 2;
+}

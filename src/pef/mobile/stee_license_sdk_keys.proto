@@ -1,0 +1,91 @@
+syntax = "proto2";
+
+package com.dingxiang.mobile;
+
+//option optimize_for = LITE_RUNTIME;
+
+message License {
+    
+    enum Branch {
+        TRAIL = 0;
+        PROD = 1;
+        DEV = 2;
+    }
+
+    enum AntiFlag {
+	   ANTI_debug    = 0x1;	
+	   ANTI_emulator = 0x2;
+	   ANTI_hook     = 0x4;
+	   ANTI_multirun = 0x8;
+	   ANTI_inject   = 0x10;
+       ANTI_memdump  = 0x20; 
+       ANTI_jailbreak = 0x40;
+       ANTI_proxy    = 0x80; 
+	   ANTI_all      = 0xFFFF;
+    }
+
+    required string product = 1;            // 产品
+    optional string version = 2;            // 版本
+    optional string expires = 3;            // 过期时间
+    optional string user = 4;               // 客户
+    required string id = 5;                 // for mapping to aes_key， appkey
+    required bytes  aes_key = 6;            // app security
+    repeated string features = 7;           // 启用的功能
+    required Branch branch = 8;             // 版本
+    required string info = 9;               // 显示信息，当granch为TRAIL时显示
+    repeated Key keys = 10;                 // 内置的key
+    optional string constid_server=11;      // constID服务器
+    optional SteeCloudServer stee_cloud_server=12;   // STEE后台
+    optional AndroidSpec android = 13;      // anndroid 平台存在
+    optional string appkey  = 14;           // 顶象技术统一分配的appKey，用于区分不同的客户
+    optional bytes  appsecurity = 15;       // 顶象技术统一分配的appSecurity，用于跟后台加密加签用
+    
+    //urls
+    optional string feedback_server = 16;   // 用户反馈后台，如无则不反馈
+    optional iOSSpec iOS            = 17;   // iOS 平台特有
+    optional uint32 anti_flags	    = 18;   // 各种anti功能开发 
+}
+
+message SteeCloudServer {
+    optional string baseurl = 1;            //公共前缀
+    optional string checkin = 2;            //风险上报
+    optional string fetch   = 3;            //模块下发
+}
+
+message Key {
+    
+    enum Flags{
+        SIGN    = 0x01;
+        VERIFY  = 0x02;
+        ENCRYPT = 0x04;
+        DECRYPT = 0x08;
+        ALL     = 0xFFFF;
+    }
+    
+    required uint32 flags=1;                // 控制是否可以加/解密，签名/验签
+    required string alg=2;                  // 算法
+    required string name=3;                 // 名称, 如aes, sha1, sha256, rc4, xxtea等等
+    optional bytes encoded=4;               // 密钥
+}
+
+message AndroidSpec {
+    enum Flags {
+        CERTS_CHECK = 0x01;
+        PKGS_CHECK  = 0x02;
+        ALL_CHECK   = 0xFFFF;
+    }
+    
+    required uint32 flags=1;                // 启用功能，是否跳过签名校验
+    repeated bytes certs=2;                 // 允许的证书列表
+    repeated string pkgs=3;                 // 运行的包名列表
+}
+
+message iOSSpec {
+    enum Flags {
+        PKGS_CHECK  = 0x01;
+        ALL_CHECK   = 0xFFFF;
+    }
+    required uint32 flags = 1;
+    repeated string pkgs = 2;
+}
+

@@ -1,0 +1,36 @@
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+
+package com.dingxiang.mobile;
+
+
+// 数据采集配置
+message STEERiskMgrGetReportConfigRequest {
+    required string tag = 1; //标签，用于标识本次数据上报的触发场景，如"first_run"(app首次启动)等等
+}
+
+message STEERiskMgrGetReportConfigResponse {
+    enum STEEConfigAction {
+        ATONCE  = 0; //立刻上报
+        GIVEUP  = 1; //放弃上报
+    }
+
+    required STEEConfigAction action    = 1;
+    repeated string filters             = 2; //黑名单过滤
+}
+
+
+message STEERiskMgrReportDataRequest {
+    // 数据采集上传
+    message STEEInfoItem {
+        required string name    = 1;
+        required string value   = 2;
+    }
+
+    repeated STEEInfoItem infos = 1;        //键值对方式保证数据
+    repeated STEEInfoItem usr_infos = 2;    //客户自定义的字段，key默认为usr_data_1, usr_data_2，如此类推
+}
+
+message STEERiskMgrReportDataResponse {
+    required string constid       = 1;  //风控系统返回的token
+}

@@ -1,0 +1,107 @@
+# github.com/asaskevich/EventBus v0.0.0-20180315140547-d46933a94f05
+github.com/asaskevich/EventBus
+# github.com/corpix/uarand v0.0.0
+github.com/corpix/uarand
+# github.com/dubbogo/getty v1.0.7
+github.com/dubbogo/getty
+# github.com/dubbogo/hessian2 v1.0.2
+github.com/dubbogo/hessian2
+# github.com/feiyuw/boomer v0.0.0-20190326021811-aea6c646ebb6
+github.com/feiyuw/boomer
+# github.com/feiyuw/dubbo-go v0.1.2-0.20190619131248-b6e494ff919a
+github.com/feiyuw/dubbo-go/common/logger
+github.com/feiyuw/dubbo-go/config
+github.com/feiyuw/dubbo-go/protocol/dubbo
+github.com/feiyuw/dubbo-go/common
+github.com/feiyuw/dubbo-go/common/constant
+github.com/feiyuw/dubbo-go/cluster/directory
+github.com/feiyuw/dubbo-go/common/extension
+github.com/feiyuw/dubbo-go/common/proxy
+github.com/feiyuw/dubbo-go/common/utils
+github.com/feiyuw/dubbo-go/protocol
+github.com/feiyuw/dubbo-go/protocol/protocolwrapper
+github.com/feiyuw/dubbo-go/version
+github.com/feiyuw/dubbo-go/protocol/invocation
+github.com/feiyuw/dubbo-go/cluster
+github.com/feiyuw/dubbo-go/config_center
+github.com/feiyuw/dubbo-go/filter
+github.com/feiyuw/dubbo-go/registry
+github.com/feiyuw/dubbo-go/remoting
+# github.com/feiyuw/xxtea v0.0.0-20190620091906-953be9f40ac6
+github.com/feiyuw/xxtea
+# github.com/golang/protobuf v1.3.1
+github.com/golang/protobuf/proto
+# github.com/golang/snappy v0.0.1
+github.com/golang/snappy
+# github.com/gopherjs/gopherjs v0.0.0-20190411002643-bd77b112433e
+github.com/gopherjs/gopherjs/js
+# github.com/gorilla/websocket v1.4.0
+github.com/gorilla/websocket
+# github.com/icrowley/fake v0.0.0-20180203215853-4178557ae428
+github.com/icrowley/fake
+# github.com/json-iterator/go v1.1.6
+github.com/json-iterator/go
+# github.com/jtolds/gls v4.20.0+incompatible
+github.com/jtolds/gls
+# github.com/klauspost/compress v1.4.1
+github.com/klauspost/compress/flate
+github.com/klauspost/compress/gzip
+github.com/klauspost/compress/zlib
+# github.com/klauspost/cpuid v1.2.0
+github.com/klauspost/cpuid
+# github.com/miekg/dns v1.1.8
+github.com/miekg/dns
+# github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+github.com/modern-go/concurrent
+# github.com/modern-go/reflect2 v1.0.1
+github.com/modern-go/reflect2
+# github.com/pkg/errors v0.8.1
+github.com/pkg/errors
+# github.com/satori/go.uuid v0.0.0-20181028125025-b2ce2384e17b
+github.com/satori/go.uuid
+# github.com/smartystreets/assertions v0.0.0-20190401211740-f487f9de1cd3
+github.com/smartystreets/assertions
+github.com/smartystreets/assertions/internal/go-diff/diffmatchpatch
+github.com/smartystreets/assertions/internal/go-render/render
+github.com/smartystreets/assertions/internal/oglematchers
+# github.com/smartystreets/goconvey v0.0.0-20190330032615-68dc04aab96a
+github.com/smartystreets/goconvey/convey
+github.com/smartystreets/goconvey/convey/reporting
+github.com/smartystreets/goconvey/convey/gotest
+# github.com/ugorji/go v1.1.4
+github.com/ugorji/go/codec
+# github.com/valyala/bytebufferpool v1.0.0
+github.com/valyala/bytebufferpool
+# github.com/valyala/fasthttp v1.2.0
+github.com/valyala/fasthttp
+github.com/valyala/fasthttp/fasthttputil
+github.com/valyala/fasthttp/stackless
+# github.com/zeromq/goczmq v0.0.0-20180830021458-ac82ea8e6d44
+github.com/zeromq/goczmq
+# github.com/zeromq/gomq v0.0.0-20181008000130-95dc37dee5c4
+github.com/zeromq/gomq
+github.com/zeromq/gomq/zmtp
+# go.uber.org/atomic v1.4.0
+go.uber.org/atomic
+# go.uber.org/multierr v1.1.0
+go.uber.org/multierr
+# go.uber.org/zap v1.10.0
+go.uber.org/zap
+go.uber.org/zap/zapcore
+go.uber.org/zap/internal/bufferpool
+go.uber.org/zap/buffer
+go.uber.org/zap/internal/color
+go.uber.org/zap/internal/exit
+# golang.org/x/crypto v0.0.0-20190411191339-88737f569e3a
+golang.org/x/crypto/ed25519
+golang.org/x/crypto/ed25519/internal/edwards25519
+# golang.org/x/net v0.0.0-20190415214537-1da14a5a36f2
+golang.org/x/net/ipv4
+golang.org/x/net/ipv6
+golang.org/x/net/bpf
+golang.org/x/net/internal/iana
+golang.org/x/net/internal/socket
+# golang.org/x/sys v0.0.0-20190416152802-12500544f89f
+golang.org/x/sys/unix
+# gopkg.in/yaml.v2 v2.2.2
+gopkg.in/yaml.v2
